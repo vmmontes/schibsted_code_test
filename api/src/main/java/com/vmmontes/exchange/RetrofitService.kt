@@ -1,4 +1,4 @@
-package com.vmmontes.api
+package com.vmmontes.exchange
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -8,8 +8,6 @@ object RetrofitService {
     private lateinit var service: BaseAppApiService
     private var initService = false
     val appBaseApiURL = "https://api.exchangeratesapi.io/"
-    val a = "https://api.exchangeratesapi.io/"
-    val accesKey = "4f78e5893a5c64cddf5b91d4363619f2"
 
     fun getService(): BaseAppApiService {
         if (!initService) {
