@@ -5,6 +5,9 @@
     <string name="end_date">Fecha final</string>
     <string name="calendar_img">Imagen del selector de fecha</string>
     <string name="search">Buscar</string>
+    <string name="alert">Alerta</string>
+    <string name="dates_error">La fecha final debe ser superior a la inicial</string>
+    <string name="ok">Ok</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

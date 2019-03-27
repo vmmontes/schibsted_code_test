@@ -3,11 +3,11 @@ package com.vmmontes.exchange
 import com.vmmontes.exchange.model.history.HistoryResponseApiModel
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface BaseAppApiService {
 
-    @GET("history?start_at=2018-01-01&end_at=2018-09-01&base=GBP&symbols=EUR")
-    fun getHistory(/*@Path("start_date") startDate : String,
-              @Path("end_date") endDate : String*/) : Call<HistoryResponseApiModel>
+    @GET("history?base=GBP&symbols=EUR")
+    fun getHistory(@Query("start_at") startDate : String,
+                   @Query("end_at") endDate : String) : Call<HistoryResponseApiModel>
 }

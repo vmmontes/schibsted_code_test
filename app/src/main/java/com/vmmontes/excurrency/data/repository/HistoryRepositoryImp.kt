@@ -7,7 +7,7 @@ import com.vmmontes.excurrency.domain.model.HistoryDomainModel
 class HistoryRepositoryImp : HistoryRepository {
     val historyCloudDataSource : HistoryCloudDataSource = HistoryCloudDataSourceImp()
 
-    override fun get(): HistoryDomainModel = historyCloudDataSource.get()
+    override fun get(startDate : Long, endDate : Long): HistoryDomainModel = historyCloudDataSource.get(startDate, endDate)
 
     override fun getAllStoredHistory(): ArrayList<HistoryDomainModel> {
         return ArrayList()
