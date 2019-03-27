@@ -1,0 +1,43 @@
+ext {
+    //App variables
+    applicationIdValue = "com.vmmontes.excurrency"
+    versionCodeValue = 1
+    versionNameValue = "1.0.0"
+
+    //Android project
+    compileSdkVersionValue = 28
+    minSdkVersionValue = 19
+    targetSdkVersionValue = 28
+
+    //Versioning
+    retrofitVersion = "2.5.0"
+    coroutinesVersion = "1.1.1"
+    androidSupportVersion = "28.0.0"
+    androidConstraintsVersion = "1.1.3"
+    okHTTPVersion = "3.12.0"
+    androidSupportVersion = "28.0.0"
+
+    //Retrofit dependencies
+    retrofitLib = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    retrofitGSONLib = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    //Coroutines dependencies
+    coroutinesCoreLib = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    coroutinesAndroidLib = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    //Android appCompact dependencies
+    androidAppCompactLib = "com.android.support:appcompat-v7:$androidSupportVersion"
+    androidDesignSupportLib = "com.android.support:design:$androidSupportVersion"
+    androidAnimatedVectorDrawableLib = "com.android.support:animated-vector-drawable:$androidSupportVersion"
+    androidSupportMediaCompactLib = "com.android.support:support-media-compat:$androidSupportVersion"
+    androidSupportCustomTabsLib = "com.android.support:customtabs:$androidSupportVersion"
+    androidSupportVectorDrawableLib = "com.android.support:support-vector-drawable:$androidSupportVersion"
+    androidSupportV4Lib = "com.android.support:support-v4:$androidSupportVersion"
+    androidSupportRecyclerViewLib = "com.android.support:recyclerview-v7:$androidSupportVersion"
+
+    //Android Constraints dependencies
+    constraintsLayoutLib = "com.android.support.constraint:constraint-layout:$androidConstraintsVersion"
+
+    //Okhttp dependencies
+    okHttpLib = "com.squareup.okhttp3:okhttp:$okHTTPVersion"
+}
