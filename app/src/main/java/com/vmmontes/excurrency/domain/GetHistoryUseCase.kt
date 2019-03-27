@@ -8,5 +8,5 @@ class GetHistoryUseCase {
 
     val historyRepository : HistoryRepository = HistoryRepositoryImp()
 
-    fun execute() : HistoryDomainModel = historyRepository.get()
+    fun execute(startDate : Long, endDate : Long) : HistoryDomainModel = historyRepository.get(startDate, endDate)
 }

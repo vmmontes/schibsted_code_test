@@ -5,9 +5,9 @@ import com.vmmontes.exchange.model.history.HistoryResponseApiModel
 
 class HistoryClientImp: HistoryClient {
 
-    override fun get(): HistoryResponseApiModel {
+    override fun get(startDate : String, endDate : String): HistoryResponseApiModel {
 
-        val response = RetrofitService.getService().getHistory().execute()
+        val response = RetrofitService.getService().getHistory(startDate, endDate).execute()
 
         return response.body()!!
     }

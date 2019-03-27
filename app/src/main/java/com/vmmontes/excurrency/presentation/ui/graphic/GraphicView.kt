@@ -10,4 +10,5 @@ interface GraphicView {
     fun openDataSelectorToEndDate()
     fun showSelectedStartDate(date : String)
     fun showSelectedEndDate(date : String)
+    fun showDatesError()
 }
