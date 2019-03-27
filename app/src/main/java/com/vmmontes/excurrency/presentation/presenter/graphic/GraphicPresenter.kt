@@ -5,12 +5,13 @@ import com.vmmontes.excurrency.kernel.coroutines.backgroundContext
 import com.vmmontes.excurrency.kernel.presenter.CoroutinesPresenter
 import com.vmmontes.excurrency.presentation.ui.graphic.GraphicView
 import com.vmmontes.excurrency.presentation.utils.getDateTime
+import com.vmmontes.excurrency.presentation.utils.getTimeDateInStringFormat
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class GraphicPresenter : CoroutinesPresenter<GraphicView>() {
 
-    val dateFormat = "dd/mm/yyyy"
+    val dateFormat = "dd/MM/yyyy"
     val getHistoryUseCase = GetHistoryUseCase()
 
     var startDate : Long? = null
