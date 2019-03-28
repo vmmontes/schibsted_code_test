@@ -1,12 +1,13 @@
 package com.vmmontes.excurrency.domain
 
 import com.vmmontes.excurrency.data.repository.HistoryRepository
-import com.vmmontes.excurrency.data.repository.HistoryRepositoryImp
 import com.vmmontes.excurrency.domain.model.HistoryDomainModel
 
-class GetHistoryUseCase {
+class GetHistoryUseCase(val historyRepository : HistoryRepository) : GetHistoryUseCaseContract {
 
-    val historyRepository : HistoryRepository = HistoryRepositoryImp()
+    override fun execute(startDate : Long, endDate : Long) : HistoryDomainModel = historyRepository.get(startDate, endDate)
+}
 
-    fun execute(startDate : Long, endDate : Long) : HistoryDomainModel = historyRepository.get(startDate, endDate)
+interface GetHistoryUseCaseContract {
+    fun execute(startDate : Long, endDate : Long) : HistoryDomainModel
 }
