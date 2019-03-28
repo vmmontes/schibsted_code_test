@@ -110,13 +110,8 @@ class GraphicFragment : BaseFragment(), GraphicView, View.OnClickListener {
     }
 
     override fun showDatesError() {
-        val builder = AlertDialog.Builder(context!!)
-        builder.setTitle(getString(R.string.alert))
-        builder.setMessage(getString(R.string.dates_error))
-        builder.setPositiveButton(getString(R.string.ok)){ dialog, _ ->
-            dialog.dismiss()
-        }
-        builder.create().show()
+        lineChartHistory.clear()
+        lineChartHistory.setNoDataText(getString(R.string.dates_error))
     }
 
     override fun showLoading() {
