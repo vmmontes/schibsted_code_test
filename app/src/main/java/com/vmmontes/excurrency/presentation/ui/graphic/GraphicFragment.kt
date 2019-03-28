@@ -54,7 +54,8 @@ class GraphicFragment : BaseFragment(), GraphicView, View.OnClickListener {
     }
 
     override fun showError() {
-        Toast.makeText(context!!,"Ha fallado", Toast.LENGTH_LONG).show()
+        lineChartHistory.clear()
+        lineChartHistory.setNoDataText(getString(R.string.error_to_show_history))
     }
 
     override fun showValues(list : List<HistoryDayDomainModel>) {

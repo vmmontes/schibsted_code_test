@@ -1,15 +1,20 @@
 package com.vmmontes.excurrency.data.mapper
 
-import com.vmmontes.exchange.model.history.HistoryResponseApiModel
+import com.vmmontes.exchange.model.history.ResultHistoryApiModel
 import com.vmmontes.excurrency.domain.model.HistoryDayDomainModel
 import com.vmmontes.excurrency.domain.model.HistoryDomainModel
+import com.vmmontes.excurrency.domain.model.ResultHistoryDomainModel
 
-fun toDomain(historyResponseApiModel : HistoryResponseApiModel) : HistoryDomainModel {
+fun toDomain(resultHistoryApiModel : ResultHistoryApiModel) : ResultHistoryDomainModel {
     val list = ArrayList<HistoryDayDomainModel>()
-    for ((day, currency) in historyResponseApiModel.rates) {
-        val historyDayDomainModel = HistoryDayDomainModel(day, currency.EUR)
-        list.add(historyDayDomainModel)
+    val historyResponseApiModel = resultHistoryApiModel.historyResponseApiModel
+
+    if (historyResponseApiModel != null) {
+        for ((day, currency) in historyResponseApiModel.rates) {
+            val historyDayDomainModel = HistoryDayDomainModel(day, currency.EUR)
+            list.add(historyDayDomainModel)
+        }
     }
 
-    return HistoryDomainModel(list)
+    return ResultHistoryDomainModel(HistoryDomainModel(list), resultHistoryApiModel.requestIsSucces)
 }
