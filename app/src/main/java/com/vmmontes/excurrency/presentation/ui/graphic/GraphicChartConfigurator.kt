@@ -1,23 +1,22 @@
-package com.vmmontes.excurrency.presentation.configurators
+package com.vmmontes.excurrency.presentation.ui.graphic
 
 import android.content.Context
 import android.support.v4.content.ContextCompat
-import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.vmmontes.excurrency.R
 import com.vmmontes.excurrency.domain.model.HistoryDayDomainModel
+import com.vmmontes.excurrency.kernel.API_DATE_FORMAT
 import com.vmmontes.excurrency.presentation.utils.chart.DateAxisValueFormatter
 import com.vmmontes.excurrency.presentation.utils.chart.StringAxisValueFormatter
 import java.text.SimpleDateFormat
 import java.util.*
 
-class StatisticsConfigurator(val chart: LineChart,
-                             val context: Context) {
+class GraphicChartConfigurator(val chart: LineChart,
+                               val context: Context) {
 
     val entries = ArrayList<Entry>()
     var minAxisY : Float = 100.0f
@@ -28,7 +27,7 @@ class StatisticsConfigurator(val chart: LineChart,
 
     fun addAll(list : List<HistoryDayDomainModel>) {
         for (historyDay in list) {
-            val format = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+            val format = SimpleDateFormat(API_DATE_FORMAT, Locale.ENGLISH)
             val date = format.parse(historyDay.day)
             val currency = historyDay.currenyEUR.toFloatOrNull()
             if (currency != null) {

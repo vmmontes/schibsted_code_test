@@ -11,4 +11,6 @@ interface GraphicView {
     fun showSelectedStartDate(date : String)
     fun showSelectedEndDate(date : String)
     fun showDatesError()
+    fun showLoading()
+    fun hideLoading()
 }

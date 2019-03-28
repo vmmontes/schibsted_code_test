@@ -2,24 +2,22 @@ package com.vmmontes.excurrency.presentation.ui.graphic
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import com.vmmontes.excurrency.R
 import com.vmmontes.excurrency.domain.model.HistoryDayDomainModel
-import com.vmmontes.excurrency.presentation.configurators.StatisticsConfigurator
+import com.vmmontes.excurrency.kernel.ui.BaseFragment
 import com.vmmontes.excurrency.presentation.presenter.graphic.GraphicPresenter
 import kotlinx.android.synthetic.main.fragment_graphic.*
 import java.util.*
-import javax.xml.datatype.DatatypeConstants.MONTHS
+import javax.inject.Inject
 
-class GraphicFragment : Fragment(), GraphicView, View.OnClickListener {
+class GraphicFragment : BaseFragment(), GraphicView, View.OnClickListener {
 
-    val presenter = GraphicPresenter()
+    @Inject lateinit var presenter : GraphicPresenter
 
     companion object {
         @JvmStatic
@@ -33,12 +31,21 @@ class GraphicFragment : Fragment(), GraphicView, View.OnClickListener {
         return inflater.inflate(R.layout.fragment_graphic, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        getApplication().component.inject(this)
+        presenter.onAttach(this)
+        presenter.onViewCreated()
+    }
+
     override fun onStart() {
         super.onStart()
-        presenter.onAttach(this)
         layoutStartDate.setOnClickListener(this)
         layoutEndDate.setOnClickListener(this)
         buttonSearch.setOnClickListener(this)
+
+        lineChartHistory.setNoDataText(getString(R.string.select_date_range))
     }
 
     override fun onDestroy() {
@@ -51,7 +58,8 @@ class GraphicFragment : Fragment(), GraphicView, View.OnClickListener {
     }
 
     override fun showValues(list : List<HistoryDayDomainModel>) {
-        val statisticsConfigurator = StatisticsConfigurator(lineChartHistory, context!!)
+        val statisticsConfigurator =
+            GraphicChartConfigurator(lineChartHistory, context!!)
         statisticsConfigurator.addAll(list)
         statisticsConfigurator.inizializeStatistic()
     }
@@ -90,7 +98,7 @@ class GraphicFragment : Fragment(), GraphicView, View.OnClickListener {
         val currentMonth = c.get(Calendar.MONTH)
         val currentDay = c.get(Calendar.DAY_OF_MONTH)
 
-        val dpd = DatePickerDialog(activity, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+        val dpd = DatePickerDialog(activity!!, DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
             when(id) {
                 layoutStartDate.id -> presenter.starDateSelected(dayOfMonth.toString(), monthOfYear.toString(), year.toString())
                 layoutEndDate.id -> presenter.endDateSelected(dayOfMonth.toString(), monthOfYear.toString(), year.toString())
@@ -108,5 +116,15 @@ class GraphicFragment : Fragment(), GraphicView, View.OnClickListener {
             dialog.dismiss()
         }
         builder.create().show()
+    }
+
+    override fun showLoading() {
+        rotatingProgressBarView.visibility = View.VISIBLE
+        lineChartHistory.visibility = View.GONE
+    }
+
+    override fun hideLoading() {
+        rotatingProgressBarView.visibility = View.GONE
+        lineChartHistory.visibility = View.VISIBLE
     }
 }

@@ -106,6 +106,17 @@
 
     </LinearLayout>
 
+    <com.vmmontes.excurrency.presentation.ui.custom.RotatingProgressBarView
+            android:id="@+id/rotatingProgressBarView"
+            android:layout_width="@dimen/loading_size"
+            android:layout_height="@dimen/loading_size"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+    />
+
     <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChartHistory"
             android:layout_width="match_parent"
