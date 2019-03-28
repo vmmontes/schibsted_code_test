@@ -11,10 +11,10 @@ class HistoryRepositoryImp (
 
     override fun get(startDate : Long, endDate : Long): ResultHistoryDomainModel = historyCloudDataSource.get(startDate, endDate)
 
-    override fun getMemoryStartDate(): Long? = historyLocalDataSource.getStartDate()
+    override fun getMemoryStartDate(): Long = historyLocalDataSource.getStartDate()
 
 
-    override fun getMemoryEndDate(): Long? = historyLocalDataSource.getEndDate()
+    override fun getMemoryEndDate(): Long = historyLocalDataSource.getEndDate()
 
     override fun setMemoryStartDate(startDate: Long) {
         historyLocalDataSource.setStartDate(startDate)

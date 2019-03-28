@@ -15,14 +15,16 @@ class GraphicPresenter(
     val getHistoryUseCase : GetHistoryUseCaseContract,
     val provideHistoryRangeDatesUseCase : ProvideHistoryRangeDatesUseCaseContract) : CoroutinesPresenter<GraphicView>() {
 
+    val without_date : Long = 0
+
     fun onViewCreated() {
-        if (provideHistoryRangeDatesUseCase.getStartDate() != null) {
-            val startDateText = getTimeDateInStringFormat(provideHistoryRangeDatesUseCase.getStartDate()!!, DOMAIN_DATE_FORMAT)
+        if (provideHistoryRangeDatesUseCase.getStartDate() != without_date) {
+            val startDateText = getTimeDateInStringFormat(provideHistoryRangeDatesUseCase.getStartDate(), DOMAIN_DATE_FORMAT)
             view?.showSelectedStartDate(startDateText)
         }
 
-        if (provideHistoryRangeDatesUseCase.getEndDate() != null ) {
-            val endDateText = getTimeDateInStringFormat(provideHistoryRangeDatesUseCase.getEndDate()!!, DOMAIN_DATE_FORMAT)
+        if (provideHistoryRangeDatesUseCase.getEndDate() != without_date) {
+            val endDateText = getTimeDateInStringFormat(provideHistoryRangeDatesUseCase.getEndDate(), DOMAIN_DATE_FORMAT)
             view?.showSelectedEndDate(endDateText)
         }
 
@@ -37,8 +39,8 @@ class GraphicPresenter(
         view?.showLoading()
         launch {
             async(backgroundContext) {
-                getHistoryUseCase.execute(provideHistoryRangeDatesUseCase.getStartDate()!!,
-                    provideHistoryRangeDatesUseCase.getEndDate()!!)
+                getHistoryUseCase.execute(provideHistoryRangeDatesUseCase.getStartDate(),
+                    provideHistoryRangeDatesUseCase.getEndDate())
             }.await().run {
                 view?.hideLoading()
 
@@ -82,8 +84,8 @@ class GraphicPresenter(
         view?.showSelectedEndDate(dateFormatted)
     }
 
-    fun isValidDates(startDate : Long?, endDate : Long?) : Boolean {
-        return if (startDate != null && endDate != null) {
+    fun isValidDates(startDate : Long, endDate : Long) : Boolean {
+        return if (startDate != without_date && endDate != without_date) {
             endDate > startDate
         } else {
             false
