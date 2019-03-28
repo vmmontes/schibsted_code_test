@@ -9,4 +9,5 @@
     <string name="dates_error">La fecha final debe ser superior a la inicial</string>
     <string name="ok">OK</string>
     <string name="select_date_range">Seleccione un rango de fechas</string>
+    <string name="error_to_show_history">Se ha producido un error, vuelva a intentarlo</string>
 </resources>

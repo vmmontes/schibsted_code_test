@@ -42,11 +42,17 @@ class GraphicPresenter(
             }.await().run {
                 view?.hideLoading()
 
-                if (this.history.isEmpty()) {
-                    view?.showValuesIsEmpty()
+                if (this.isSucces && this.historyDomainModel != null) {
+                    val history = this.historyDomainModel.history
+
+                    if (history.isEmpty()) {
+                        view?.showValuesIsEmpty()
+                    } else {
+                        val sortedList = history.sortedBy { it.day }
+                        view?.showValues(sortedList)
+                    }
                 } else {
-                    val sortedList = this.history.sortedBy { it.day }
-                    view?.showValues(sortedList)
+                    view?.showError()
                 }
             }
         }
