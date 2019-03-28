@@ -5,9 +5,9 @@ import com.vmmontes.excurrency.data.repository.HistoryRepositoryImp
 
 class ProvideHistoryRangeDatesUseCase(val historyRepository : HistoryRepository): ProvideHistoryRangeDatesUseCaseContract{
 
-    override fun getStartDate() : Long? = historyRepository.getMemoryStartDate()
+    override fun getStartDate() : Long = historyRepository.getMemoryStartDate()
 
-    override fun getEndDate() : Long? = historyRepository.getMemoryEndDate()
+    override fun getEndDate() : Long = historyRepository.getMemoryEndDate()
 
     override fun setStartDate(startDate : Long) {
         historyRepository.setMemoryStartDate(startDate)
@@ -19,8 +19,8 @@ class ProvideHistoryRangeDatesUseCase(val historyRepository : HistoryRepository)
 }
 
 interface ProvideHistoryRangeDatesUseCaseContract {
-    fun getStartDate() : Long?
-    fun getEndDate() : Long?
+    fun getStartDate() : Long
+    fun getEndDate() : Long
     fun setStartDate(startDate : Long)
     fun setEndDate(endDate : Long)
 }
