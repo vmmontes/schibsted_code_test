@@ -32,7 +32,7 @@ Contains the user interfaces classes
 ###### Kernel
 Contains the core tfor different classes types who per example base configuration to presenter with Coroutines.
 
-This project contains a loading view developed by me.
+This project contains a loading view developed by me.<br />
 ![Loading View](art/loadingImg.png)
 
 ### Resources
