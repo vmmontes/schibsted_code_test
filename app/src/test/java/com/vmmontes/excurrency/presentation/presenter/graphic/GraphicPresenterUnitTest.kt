@@ -42,7 +42,7 @@ class GraphicPresenterUnitTest {
     }
 
     @Test
-    fun verifyisValidDatesMethodIsWorking() {
+    fun verifyisValidDatesMethodCallRightMethodsOfView() {
         //28/03/2019
         val endDateInMiliseconds = 1553803626367
         //11/01/2019
@@ -90,7 +90,7 @@ class GraphicPresenterUnitTest {
     }
 
     @Test
-    fun verifyWhenGetHistoryUseCaseReturnResponseMethodWhenResponseHasSuccesFailAndNullHistory() {
+    fun verifyWhenGetHistoryUseCaseReturnResponseMethodWhenResponseFailsAndNullHistory() {
         val getGraphicPresenterMockModels = GetResponseDomainMockModels()
         presenter.onAttach(view)
 
@@ -114,7 +114,7 @@ class GraphicPresenterUnitTest {
     }
 
     @Test
-    fun verifyWhenGetHistoryUseCaseReturnResponseMethodWhenResponseSuccesFailAndHasEmptyHistoryList() {
+    fun verifyWhenGetHistoryUseCaseReturnResponseMethodWhenResponseFailsAndHasEmptyHistoryList() {
         val getGraphicPresenterMockModels = GetResponseDomainMockModels()
         presenter.onAttach(view)
 
@@ -126,7 +126,7 @@ class GraphicPresenterUnitTest {
     }
 
     @Test
-    fun verifyWhenGetHistoryUseCaseReturnResponseMethodWhenResponseSuccesAndHasHistoryList() {
+    fun verifyWhenGetHistoryUseCaseReturnResponseMethodWhenResponseIsSuccesAndHasHistoryList() {
         val getGraphicPresenterMockModels = GetResponseDomainMockModels()
         presenter.onAttach(view)
 
@@ -150,7 +150,7 @@ class GraphicPresenterUnitTest {
     }
 
     @Test
-    fun validateOnDateButtonClicked() {
+    fun validateViewsCallWhenUserClickOnView() {
         presenter.onAttach(view)
 
         presenter.onStartDateClicked()
