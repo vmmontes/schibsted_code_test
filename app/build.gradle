@@ -23,11 +23,20 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            testCoverageEnabled true
+        }
     }
 }
 
 kapt {
     generateStubs = true
+}
+
+android {
+    jacoco {
+        version = '0.7.9'
+    }
 }
 
 dependencies {
@@ -48,4 +57,5 @@ dependencies {
     testImplementation mockitoLib
 
     api project(':api')
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
 }
