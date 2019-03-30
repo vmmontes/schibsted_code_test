@@ -33,7 +33,7 @@ Contains the user interfaces classes
 Contains the core tfor different classes types who per example base configuration to presenter with Coroutines.
 
 This project contains a loading view developed by me.
-![Loading View](art/loadingImg.png)
+![Loading View](art/loadingImg.jpg)
 
 ### Resources
  - To get information about the historical dollar-euro exchange rates I used exchangeratesapi (https://exchangeratesapi.io/)
