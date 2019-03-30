@@ -1,8 +1,8 @@
 ext {
     //App variables
     applicationIdValue = "com.vmmontes.excurrency"
-    versionCodeValue = 1
-    versionNameValue = "1.0.0"
+    versionCodeValue = 10011
+    versionNameValue = "1.0.1"
 
     //Android project
     compileSdkVersionValue = 28
