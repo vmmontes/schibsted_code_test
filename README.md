@@ -23,13 +23,13 @@ The repositories responsability is call to diferents data source to get data in 
 ###### Use cases
 Contains the business logic and it can do calls to the repositories.
 
-##### Presenter
+###### Presenter
 it's responsible to know when user interact with view and to tell it what will do. Also its responsable to manage the Asynchronous threads in this case with coroutines and it calls to use cases.
 
-##### view
+###### View
 Contains the user interfaces classes
 
-##### kernel
+###### Kernel
 Contains the core tfor different classes types who per example base configuration to presenter with Coroutines.
 
 This project contains a loading view developed by me.
