@@ -10,6 +10,7 @@ import com.vmmontes.excurrency.data.repository.HistoryRepository
 import com.vmmontes.excurrency.data.repository.HistoryRepositoryImp
 import com.vmmontes.excurrency.domain.GetHistoryUseCase
 import com.vmmontes.excurrency.domain.ProvideHistoryRangeDatesUseCase
+import com.vmmontes.excurrency.domain.SortHistoryDatesUseCase
 import com.vmmontes.excurrency.presentation.presenter.graphic.GraphicPresenter
 import dagger.Module
 import dagger.Provides
@@ -18,29 +19,33 @@ import dagger.Provides
 class GraphicModule {
 
     @Provides
-    fun provideHistoryClient() : HistoryClient = HistoryClientImp()
+    fun provideHistoryClient(): HistoryClient = HistoryClientImp()
 
     @Provides
-    fun provideCloudDataSource(historyClient : HistoryClient) : HistoryCloudDataSource =
+    fun provideCloudDataSource(historyClient: HistoryClient) : HistoryCloudDataSource =
         HistoryCloudDataSourceImp(historyClient)
 
     @Provides
-    fun provideHistoryLocalDataSource() : HistoryLocalDataSource = HistoryLocalDataSourceImp()
+    fun provideHistoryLocalDataSource(): HistoryLocalDataSource = HistoryLocalDataSourceImp()
 
     @Provides
-    fun provideHistoryRepository(historyCloudDataSource : HistoryCloudDataSource,
+    fun provideHistoryRepository(historyCloudDataSource: HistoryCloudDataSource,
                                  historyLocalDataSource: HistoryLocalDataSource
-    ) : HistoryRepository = HistoryRepositoryImp(historyCloudDataSource, historyLocalDataSource)
+    ): HistoryRepository = HistoryRepositoryImp(historyCloudDataSource, historyLocalDataSource)
 
     @Provides
-    fun providesProvideHistoryRangeDatesUseCase(historyRepository : HistoryRepository) : ProvideHistoryRangeDatesUseCase =
+    fun providesProvideHistoryRangeDatesUseCase(historyRepository: HistoryRepository): ProvideHistoryRangeDatesUseCase =
         ProvideHistoryRangeDatesUseCase(historyRepository)
 
     @Provides
-    fun providesGetHistoryUseCase(historyRepository : HistoryRepository) : GetHistoryUseCase = GetHistoryUseCase(historyRepository)
+    fun providesSortHistoryDatesUseCase(): SortHistoryDatesUseCase = SortHistoryDatesUseCase()
 
     @Provides
-    fun provideGraphPresenter(getHistoryUseCase : GetHistoryUseCase,
-                              provideHistoryRangeDatesUseCase : ProvideHistoryRangeDatesUseCase) : GraphicPresenter =
+    fun providesGetHistoryUseCase(historyRepository: HistoryRepository, sortHistoryDatesUseCase: SortHistoryDatesUseCase): GetHistoryUseCase =
+        GetHistoryUseCase(historyRepository, sortHistoryDatesUseCase)
+
+    @Provides
+    fun provideGraphPresenter(getHistoryUseCase: GetHistoryUseCase,
+                              provideHistoryRangeDatesUseCase: ProvideHistoryRangeDatesUseCase): GraphicPresenter =
         GraphicPresenter(getHistoryUseCase, provideHistoryRangeDatesUseCase)
 }

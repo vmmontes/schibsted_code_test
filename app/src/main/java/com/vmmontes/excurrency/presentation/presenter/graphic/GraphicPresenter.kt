@@ -2,6 +2,7 @@ package com.vmmontes.excurrency.presentation.presenter.graphic
 
 import com.vmmontes.excurrency.domain.GetHistoryUseCaseContract
 import com.vmmontes.excurrency.domain.ProvideHistoryRangeDatesUseCaseContract
+import com.vmmontes.excurrency.domain.model.ResultHistoryDomainModel
 import com.vmmontes.excurrency.kernel.DOMAIN_DATE_FORMAT
 import com.vmmontes.excurrency.kernel.coroutines.backgroundContext
 import com.vmmontes.excurrency.kernel.presenter.CoroutinesPresenter
@@ -42,21 +43,25 @@ class GraphicPresenter(
                 getHistoryUseCase.execute(provideHistoryRangeDatesUseCase.getStartDate(),
                     provideHistoryRangeDatesUseCase.getEndDate())
             }.await().run {
-                view?.hideLoading()
-
-                if (this.isSucces && this.historyDomainModel != null) {
-                    val history = this.historyDomainModel.history
-
-                    if (history.isEmpty()) {
-                        view?.showValuesIsEmpty()
-                    } else {
-                        val sortedList = history.sortedBy { it.day }
-                        view?.showValues(sortedList)
-                    }
-                } else {
-                    view?.showError()
-                }
+                whenGetHistoryUseCaseReturnResponse(this)
             }
+        }
+    }
+
+    fun whenGetHistoryUseCaseReturnResponse(resultHistoryDomainModel: ResultHistoryDomainModel) {
+        view?.hideLoading()
+
+        if (resultHistoryDomainModel.isSucces && resultHistoryDomainModel.historyDomainModel != null) {
+            val historyDomainModel = resultHistoryDomainModel.historyDomainModel
+            val history = historyDomainModel!!.history
+
+            if (history.isEmpty()) {
+                view?.showValuesIsEmpty()
+            } else {
+                view?.showValues(history)
+            }
+        } else {
+            view?.showError()
         }
     }
 
