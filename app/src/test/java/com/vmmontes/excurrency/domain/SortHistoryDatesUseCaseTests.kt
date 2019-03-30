@@ -8,7 +8,7 @@ import org.junit.Test
 class SortHistoryDatesUseCaseTests {
 
     @Test
-    fun validateGetHistoryUseCaseWorkflowWithRightData() {
+    fun shouldGetListInAscOrderByDate() {
         val list = ArrayList<HistoryDayDomainModel>()
         val firstDate = "01/01/2019"
         val secondDate = "29/02/2019"
