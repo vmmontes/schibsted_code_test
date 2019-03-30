@@ -100,9 +100,10 @@ class GraphicFragment : BaseFragment(), GraphicView, View.OnClickListener {
         val currentDay = c.get(Calendar.DAY_OF_MONTH)
 
         val dpd = DatePickerDialog(activity!!, DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+            val month = monthOfYear + 1
             when(id) {
-                layoutStartDate.id -> presenter.starDateSelected(dayOfMonth.toString(), monthOfYear.toString(), year.toString())
-                layoutEndDate.id -> presenter.endDateSelected(dayOfMonth.toString(), monthOfYear.toString(), year.toString())
+                layoutStartDate.id -> presenter.starDateSelected(dayOfMonth.toString(), month.toString(), year.toString())
+                layoutEndDate.id -> presenter.endDateSelected(dayOfMonth.toString(), month.toString(), year.toString())
             }
         }, currentYear, currentMonth, currentDay)
 
