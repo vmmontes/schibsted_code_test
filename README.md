@@ -4,7 +4,7 @@
 
 The selected architecture is Clean architecture with MVP pattern:
 
-![Clean Architecture](art/CleanSample.png)
+![Clean Architecture](art/CleanScheme.png)
 
 ### Modules organization
 
